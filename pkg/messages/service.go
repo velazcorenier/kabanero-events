@@ -18,6 +18,7 @@ package messages
 
 import (
 	"fmt"
+
 	"k8s.io/klog"
 )
 
@@ -56,6 +57,8 @@ func NewService(fileName string) (*Service, error) {
 			newProvider, err = newNATSProvider(provider)
 		case "rest":
 			newProvider, err = newRESTProvider(provider)
+		case "pulsar":
+			newProvider, err = newPULSARProvider(provider)
 		default:
 			return nil, fmt.Errorf("provider '%s' for '%s' is not recognized", provider.ProviderType, provider.Name)
 		}
